@@ -323,8 +323,6 @@ public class DatadogLogStorage implements LogStorage {
 
         private void eol() throws IOException {
             eol(buf.getBuffer(), buf.size());
-
-            // reuse the buffer under normal circumstances, but don't let the line buffer grow unbounded
             if (buf.size()>4096)
                 buf = new ByteArrayOutputStream2();
             else
