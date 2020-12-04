@@ -35,7 +35,6 @@ import org.jenkinsci.plugins.workflow.log.LogStorageFactory;
 import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.NoExternalUse;
 
-import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;

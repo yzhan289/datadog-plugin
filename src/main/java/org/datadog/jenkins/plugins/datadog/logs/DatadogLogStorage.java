@@ -48,7 +48,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.BiFunction;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -87,7 +86,6 @@ public class DatadogLogStorage implements LogStorage {
     @Nonnull
     public TaskListener nodeListener(FlowNode flowNode) throws IOException, InterruptedException {
         return new DatadogBuildListener(new DatadogLogStorage.IndexOutputStream(flowNode.getId()));
-//        return new DatadogBuildListener(new DatadogOutputStream(flowNode.));
     }
 
     @Override
@@ -337,16 +335,7 @@ public class DatadogLogStorage implements LogStorage {
             final String inputLine = new String(bytes, 0, len, StandardCharsets.UTF_8);
             String line = inputLine;
 
-            String newLine = LineUtils.filterLine(line);
-
-            if (null != newLine) {
-                if (LOGGER.isLoggable(Level.FINE)) {
-                    LOGGER.log(Level.FINE,
-                            "Filtered logfile output ''{0}''.", line);
-                }
-
-                bos.write(newLine.getBytes(StandardCharsets.UTF_8));
-            }
+            bos.write(line.getBytes(StandardCharsets.UTF_8));
 
         }
     }

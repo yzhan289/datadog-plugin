@@ -37,10 +37,6 @@ import java.util.logging.Logger;
 import jenkins.util.Timer;
 import org.jenkinsci.remoting.SerializableOnlyOverRemoting;
 
-/**
- * Buffered output stream which is guaranteed to deliver content after some time even if idle and the buffer does not fill up.
- * The automatic “flushing” does <em>not</em> flush the underlying stream, for example via {@code ProxyOutputStream.Flush}.
- */
 final class DelayBufferedOutputStream extends BufferedOutputStream {
 
     private static final Logger LOGGER = Logger.getLogger(
@@ -48,7 +44,6 @@ final class DelayBufferedOutputStream extends BufferedOutputStream {
 
     static final class Tuning implements SerializableOnlyOverRemoting {
         private Tuning() {}
-        // nonfinal for Groovy scripting:
         long minRecurrencePeriod = Long.getLong(
                 DelayBufferedOutputStream.class.getName() + ".minRecurrencePeriod", 1_000); // 1s
         long maxRecurrencePeriod = Long.getLong(
@@ -92,7 +87,6 @@ final class DelayBufferedOutputStream extends BufferedOutputStream {
     }
 
     void flushAndReschedule() {
-        // TODO as an optimization, avoid flushing the buffer if it was recently flushed anyway due to filling up
         try {
             flushBuffer();
         } catch (IOException x) {
