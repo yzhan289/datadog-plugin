@@ -66,7 +66,9 @@ public class DatadogTaskListenerDecorator extends TaskListenerDecorator {
             try {
                 Queue.Executable executable = owner.getExecutable();
                 if (executable instanceof WorkflowRun) {
-                    return new DatadogTaskListenerDecorator((WorkflowRun) executable);
+//                    return new DatadogTaskListenerDecorator((WorkflowRun) executable);
+                    // turn this off in favor of LogStorage implementation
+                    return null;
                 }
             } catch (IOException ex) {
                 LOGGER.log(Level.WARNING, null, ex);

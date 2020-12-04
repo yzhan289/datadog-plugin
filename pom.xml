@@ -20,6 +20,7 @@
 
   <properties>
     <java.level>8</java.level>
+    <useBeta>true</useBeta>
     <jenkins.version>2.164.1</jenkins.version>
     <hpi.compatibleSinceVersion>1.0.0</hpi.compatibleSinceVersion>
     <dd-trace-java.version>0.62.0</dd-trace-java.version>
@@ -179,6 +180,11 @@
       <artifactId>jackson2-api</artifactId>
       <version>2.9.8</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-api</artifactId>
+      <version>2.40</version>
     </dependency>
   </dependencies>
 
